@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spyglass Detective Agency</title>
+    
+    <!-- Google Fonts: Eagle Lake -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Eagle+Lake&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --sky-blue: #87CEEB;
+            --light-blue: #E0F7FA;
+            --deep-blue: #0047AB;
+            --dark-ink: #002147;
+            --white: #ffffff;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--sky-blue);
+            font-family: 'Eagle Lake', cursive;
+            color: var(--dark-ink);
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.2) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.2) 1px, transparent 1px);
+            background-size: 20px 20px; /* Tech-grid effect */
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            background-color: var(--light-blue);
+            border: 4px solid var(--deep-blue);
+            box-shadow: 10px 10px 0px rgba(0, 0, 0, 0.2);
+            padding: 40px;
+            border-radius: 20px;
+        }
+
+        /* --- Header & Logo --- */
+        header {
+            text-align: center;
+            border-bottom: 2px dashed var(--deep-blue);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .logo-container {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        /* SVG Logo Styling */
+        svg {
+            width: 100%;
+            height: 100%;
+            overflow: visible;
+        }
+
+        path {
+            fill: none;
+        }
+
+        text {
+            fill: var(--deep-blue);
+            font-family: 'Eagle Lake', cursive;
+            font-size: 24px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* --- Content Sections --- */
+        h1 {
+            color: var(--deep-blue);
+            font-size: 2.5rem;
+            margin-top: 10px;
+            text-shadow: 1px 1px 0px rgba(255,255,255,0.5);
+        }
+
+        p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+        }
+
+        .tagline {
+            font-size: 1.5rem;
+            color: var(--deep-blue);
+            font-weight: bold;
+            border-left: 5px solid var(--deep-blue);
+            padding-left: 15px;
+            margin: 20px 0;
+            background: rgba(255,255,255,0.5);
+        }
+
+        /* --- Pricing Cards --- */
+        .pricing-section {
+            display: flex;
+            justify-content: space-around;
+            margin: 40px 0;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .file-card {
+            background: var(--white);
+            border: 2px solid var(--deep-blue);
+            padding: 20px;
+            width: 40%;
+            min-width: 250px;
+            text-align: center;
+            position: relative;
+            box-shadow: 5px 5px 0px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+        }
+
+        .file-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stamp {
+            border: 2px solid var(--deep-blue);
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px auto;
+            font-size: 1.5rem;
+            font-weight: bold;
+            background-color: var(--sky-blue);
+            color: var(--white);
+        }
+
+        /* --- Form --- */
+        .contact-section {
+            background-color: rgba(255, 255, 255, 0.6);
+            padding: 30px;
+            border-radius: 10px;
+            border: 1px solid var(--deep-blue);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+            color: var(--deep-blue);
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 12px;
+            font-family: 'Courier New', monospace; /* Tech contrast */
+            border: 2px solid var(--deep-blue);
+            background-color: #f0f8ff;
+            font-size: 1rem;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: var(--deep-blue);
+            color: var(--white);
+            border: none;
+            padding: 15px 30px;
+            font-family: 'Eagle Lake', cursive;
+            font-size: 1.2rem;
+            cursor: pointer;
+            box-shadow: 3px 3px 0px var(--dark-ink);
+            transition: all 0.2s;
+            display: block;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: var(--sky-blue);
+            color: var(--deep-blue);
+            box-shadow: 1px 1px 0px var(--dark-ink);
+            transform: translate(2px, 2px);
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Animation for the magnifying glass lens */
+        @keyframes scan {
+            0% { transform: translate(0,0); }
+            50% { transform: translate(5px, -5px); }
+            100% { transform: translate(0,0); }
+        }
+        .lens {
+            animation: scan 3s infinite ease-in-out;
+        }
+
+        @media (max-width: 600px) {
+            .pricing-section {
+                flex-direction: column;
+                align-items: center;
+            }
+            .file-card {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <div class="logo-container">
+                <!-- SVG Logo: Magnifying glass with text on a curve -->
+                <svg viewBox="0 0 200 200">
+                    <!-- Path for text to follow (invisible) -->
+                    <path id="textCurve" d="M 25,100 A 75,75 0 1,1 175,100" />
+                    
+                    <!-- The Magnifying Glass -->
+                    <g class="lens">
+                        <!-- Handle -->
+                        <rect x="130" y="130" width="20" height="60" transform="rotate(-45 140 160)" fill="#002147" />
+                        <!-- Outer Rim -->
+                        <circle cx="100" cy="100" r="60" stroke="#0047AB" stroke-width="8" fill="rgba(135, 206, 235, 0.3)" />
+                        <!-- Glass highlight -->
+                        <path d="M 70,80 Q 80,60 100,60" stroke="white" stroke-width="4" stroke-linecap="round" fill="none" opacity="0.6" />
+                    </g>
+                    
+                    <!-- Text on the path -->
+                    <text width="200">
+                        <textPath href="#textCurve" startOffset="50%" text-anchor="middle">
+                            SPYGLASS
+                        </textPath>
+                    </text>
+                </svg>
+            </div>
+            <h1>Spyglass Detective Agency</h1>
+            <p>The Future of Private Investigation</p>
+        </header>
+
+        <section id="about">
+            <div class="tagline">We Solve Mysteries with Technology.</div>
+            <p>
+                Gone are the days of dusty footprints and cigarette ash. At Spyglass, we use state-of-the-art digital forensics, satellite imagery, and advanced algorithms to uncover the truth. Whether it's a missing cat or a digital phantom, our tech-first approach guarantees results.
+            </p>
+        </section>
+
+        <section id="services">
+            <h2 style="text-align:center; color: var(--deep-blue); margin-top: 40px;">Select Your Case File</h2>
+            
+            <div class="pricing-section">
+                <!-- Small Mystery -->
+                <div class="file-card">
+                    <div class="stamp">£5</div>
+                    <h3>Small Mystery</h3>
+                    <p>Perfect for minor inconveniences.</p>
+                    <ul style="text-align: left; font-size: 0.9rem;">
+                        <li>Lost item tracking</li>
+                        <li>Social media verification</li>
+                        <li>Basic background check</li>
+                    </ul>
+                </div>
+
+                <!-- Big Mystery -->
+                <div class="file-card">
+                    <div class="stamp" style="background-color: var(--deep-blue);">£10</div>
+                    <h3>Big Mystery</h3>
+                    <p>For the serious enigmas.</p>
+                    <ul style="text-align: left; font-size: 0.9rem;">
+                        <li>Complex surveillance</li>
+                        <li>Digital pattern analysis</li>
+                        <li>Full mystery resolution</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact-section">
+            <h2 style="margin-top:0;">Open a Case</h2>
+            <p>Fill out the data below securely. Our servers are encrypted.</p>
+            
+            <form>
+                <div class="form-group">
+                    <label for="name">Client Name (Codename acceptable):</label>
+                    <input type="text" id="name" placeholder="E.g. Sherlock H." required>
+                </div>
+
+                <div class="form-group">
+                    <label for="package">Select Case Level:</label>
+                    <select id="package">
+                        <option value="small">Small Mystery (£5)</option>
+                        <option value="big">Big Mystery (£10)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="details">Mystery Details:</label>
+                    <textarea id="details" rows="5" placeholder="Tell us what happened..." required></textarea>
+                </div>
+
+                <button type="submit">TRANSMIT DATA TO SPYGLASS</button>
+            </form>
+        </section>
+
+        <footer>
+            <p>&copy; 2026 Spyglass Agency. <br> 221B Tech Lane, The Cloud.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Simple script to handle form submission for the demo
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const type = document.getElementById('package').value;
+            
+            let price = type === 'small' ? '£5' : '£10';
+            
+            alert(`DATA RECEIVED.\n\nAgent, we are reviewing the case for ${name}.\nThe fee will be ${price}. We will begin the digital investigation immediately.`);
+            this.reset();
+        });
+    </script>
+
+</body>
+</html>
