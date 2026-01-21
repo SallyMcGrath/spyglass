@@ -252,7 +252,7 @@
         <section id="about">
             <div class="tagline">We Solve Mysteries with Technology.</div>
             <p>
-                Gone are the days of dusty footprints and cigarette ash. At Spyglass, we use state-of-the-art digital forensics, deduction, and advanced algorithms to uncover the truth. Whether it's a missing cat or a digital phantom, our tech-first approach gets results.
+                Gone are the days of dusty footprints and cigarette ash. At Spyglass, we use state-of-the-art digital forensics, deduction, and advanced algorithms to uncover the truth. Whether it's a[...]
             </p>
         </section>
 
@@ -288,25 +288,31 @@
 
         <section id="contact" class="contact-section">
             <h2 style="margin-top:0;">Open a Case</h2>
-            <p>Fill out the data below securely.</p>
+            <p>Fill out the data below securely.<br>
+                <small>On submit, your email client will open. Complete sending to <strong>spyglass@sheldononline.co.uk</strong>.</small>
+            </p>
             
-            <form>
+            <form
+                action="mailto:spyglass@sheldononline.co.uk"
+                method="POST"
+                enctype="text/plain"
+            >
                 <div class="form-group">
                     <label for="name">Client Name (Codename acceptable):</label>
-                    <input type="text" id="name" placeholder="E.g. Sherlock H." required>
+                    <input type="text" id="name" name="Client Name" placeholder="E.g. Sherlock H." required>
                 </div>
 
                 <div class="form-group">
                     <label for="package">Select Case Level:</label>
-                    <select id="package">
-                        <option value="small">Small Mystery (£5)</option>
-                        <option value="big">Big Mystery (£10)</option>
+                    <select id="package" name="Case Level">
+                        <option value="Small Mystery (£5)">Small Mystery (£5)</option>
+                        <option value="Big Mystery (£10)">Big Mystery (£10)</option>
                     </select>
                 </div>
 
                 <div class="form-group">
                     <label for="details">Mystery Details:</label>
-                    <textarea id="details" rows="5" placeholder="Tell us what happened..." required></textarea>
+                    <textarea id="details" name="Mystery Details" rows="5" placeholder="Tell us what happened..." required></textarea>
                 </div>
 
                 <button type="submit">TRANSMIT DATA TO SPYGLASS</button>
@@ -318,6 +324,7 @@
         </footer>
     </div>
 
+    <!--
     <script>
         // Simple script to handle form submission for the demo
         document.querySelector('form').addEventListener('submit', function(e) {
@@ -331,6 +338,7 @@
             this.reset();
         });
     </script>
+    -->
 
 </body>
 </html>
