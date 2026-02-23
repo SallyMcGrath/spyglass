@@ -289,14 +289,23 @@
         <section id="contact" class="contact-section">
             <h2 style="margin-top:0;">Open a Case</h2>
             <p>Fill out the data below securely.<br>
-                <small>On submit, your email client will open. Complete sending to <strong>spyglass@sheldononline.co.uk</strong>.</small>
+                <small>Your case will be transmitted directly to Spyglass HQ.</small>
             </p>
+
+            <div id="success-message" style="display:none; background: var(--deep-blue); color: var(--white); padding: 20px; border-radius: 8px; text-align: center; margin-bottom: 20px;">
+                ✅ <strong>DATA RECEIVED.</strong> Your case file has been transmitted to Spyglass HQ. We will begin the investigation immediately.
+            </div>
             
             <form
-                action="mailto:spyglass@sheldononline.co.uk"
+                action="https://formsubmit.co/spyglass@sheldononline.co.uk"
                 method="POST"
-                enctype="text/plain"
             >
+                <!-- FormSubmit.co config -->
+                <input type="hidden" name="_subject" value="New Case File from Spyglass Website">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_next" value="https://sallymcgrath.github.io/spyglass/?submitted=true">
+                <input type="text" name="_honey" style="display:none">
+
                 <div class="form-group">
                     <label for="name">Client Name (Codename acceptable):</label>
                     <input type="text" id="name" name="Client Name" placeholder="E.g. Sherlock H." required>
@@ -324,21 +333,15 @@
         </footer>
     </div>
 
-    <!--
     <script>
-        // Simple script to handle form submission for the demo
-        document.querySelector('form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const name = document.getElementById('name').value;
-            const type = document.getElementById('package').value;
-            
-            let price = type === 'small' ? '£5' : '£10';
-            
-            alert(`DATA RECEIVED.\n\nAgent, we are reviewing the case for ${name}.\nThe fee will be ${price}. We will begin the digital investigation immediately.`);
-            this.reset();
-        });
+        // Show success message if redirected back after form submission
+        if (window.location.search.includes('submitted=true')) {
+            document.getElementById('success-message').style.display = 'block';
+            document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+            // Clean up the URL
+            history.replaceState(null, '', window.location.pathname);
+        }
     </script>
-    -->
 
 </body>
 </html>
